@@ -10,11 +10,13 @@
         placeholder="Search"
         v-model.lazy="searchInput"
       />
-      <button v-show="searchInput !== ''" class="button">Clear Search</button>
+      <button @click="clearSearch" v-show="searchInput !== ''" class="button">
+        Clear Search
+      </button>
     </div>
     <!-- Movies -->
     <div class="container movies">
-      <div id="movie-grid" class="movies-grid">
+      <div v-if="searchInput === ''" id="movie-grid" class="movies-grid">
         <div class="movie" v-for="(movie, index) in movies" :key="index">
           <div class="movie-img">
             <img
@@ -47,7 +49,7 @@
           </div>
         </div>
       </div>
-      <div v-if="searchInput !== ''" id="movie-grid" class="movies-grid">
+      <div else id="movie-grid" class="movies-grid">
         <div
           class="movie"
           v-for="(movie, index) in searchedMovies"
@@ -125,6 +127,10 @@ export default {
         this.searchedMovies.push(movie)
       })
       console.log(this.searchedMovies)
+    },
+    clearSearch() {
+      this.searchInput = ''
+      this.searchedMovies = []
     },
   },
 }
