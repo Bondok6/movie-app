@@ -14,8 +14,10 @@
         Clear Search
       </button>
     </div>
+    <!-- Loading -->
+    <loading v-if="$fetchState.pending" />
     <!-- Movies -->
-    <div class="container movies">
+    <div v-else class="container movies">
       <div v-if="searchInput === ''" id="movie-grid" class="movies-grid">
         <div class="movie" v-for="(movie, index) in movies" :key="index">
           <div class="movie-img">
@@ -49,7 +51,7 @@
           </div>
         </div>
       </div>
-      <div else id="movie-grid" class="movies-grid">
+      <div v-else id="movie-grid" class="movies-grid">
         <div
           class="movie"
           v-for="(movie, index) in searchedMovies"
@@ -107,6 +109,7 @@ export default {
 
     await this.searchMovies()
   },
+  fetchDelay: 1000,
   methods: {
     async getMovies() {
       const data = await fetch(
@@ -137,6 +140,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.loading {
+  padding-top: 120px;
+  align-items: flex-start;
+}
+
 .search {
   display: flex;
   padding: 32px 16px;
