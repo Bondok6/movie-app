@@ -60,7 +60,7 @@
           <div class="movie-img">
             <img
               :src="`https:/image.tmdb.org/t/p/w500/${movie.poster_path}`"
-              alt=""
+              alt="movie poster"
             />
             <p class="review">{{ movie.vote_average }}</p>
             <p class="overview">{{ movie.overview }}</p>
