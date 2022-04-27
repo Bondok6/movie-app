@@ -1,13 +1,13 @@
 <template>
   <div>
-    <loading v-if="$fetchState.pending" />
+    <Loading v-if="$fetchState.pending" />
 
     <div v-else class="container single-movie">
       <nuxt-link to="/" class="button">Back</nuxt-link>
       <div class="movie-info">
         <div class="movie-img">
           <img
-            :src="`https:/image.tmdb.org/t/p/w500/${this.movie.poster_path}`"
+            :src="`https:/image.tmdb.org/t/p/w500/${movie.poster_path}`"
             alt="movie poster"
           />
         </div>
@@ -46,10 +46,14 @@
 </template>
 
 <script>
-import loading from '../../components/loading.vue'
+import Loading from '../../components/Loading.vue'
 export default {
-  components: { loading },
-  name: 'singleMovie',
+  components: { Loading },
+  data() {
+    return {
+      movie: '',
+    }
+  },
   async fetch() {
     await this.getSingleMovie()
   },
@@ -58,11 +62,6 @@ export default {
   head() {
     return {
       title: this.movie.title,
-    }
-  },
-  data() {
-    return {
-      movie: '',
     }
   },
   methods: {

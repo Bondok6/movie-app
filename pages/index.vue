@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <!-- Hero -->
-    <hero-section />
+    <Hero />
     <!-- Search -->
     <div class="container search">
       <input
@@ -15,7 +15,7 @@
       </button>
     </div>
     <!-- Loading -->
-    <loading v-if="$fetchState.pending" />
+    <Loading v-if="$fetchState.pending" />
     <!-- Movies -->
     <div v-else class="container movies">
       <div v-if="searchInput === ''" id="movie-grid" class="movies-grid">
