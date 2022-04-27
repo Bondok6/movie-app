@@ -5,12 +5,12 @@
     <!-- Search -->
     <div class="container search">
       <input
-        @keyup.enter="$fetch"
-        type="search"
-        placeholder="Search"
         v-model.lazy="searchInput"
+        type="text"
+        placeholder="Search"
+        @keyup.enter="$fetch"
       />
-      <button @click="clearSearch" v-show="searchInput !== ''" class="button">
+      <button v-show="searchInput !== ''" class="button" @click="clearSearch">
         Clear Search
       </button>
     </div>
@@ -19,7 +19,7 @@
     <!-- Movies -->
     <div v-else class="container movies">
       <div v-if="searchInput === ''" id="movie-grid" class="movies-grid">
-        <div class="movie" v-for="(movie, index) in movies" :key="index">
+        <div v-for="movie in movies" :key="movie.movieid" class="movie">
           <div class="movie-img">
             <img
               :src="`https:/image.tmdb.org/t/p/w500/${movie.poster_path}`"
@@ -52,11 +52,7 @@
         </div>
       </div>
       <div v-else id="movie-grid" class="movies-grid">
-        <div
-          class="movie"
-          v-for="(movie, index) in searchedMovies"
-          :key="index"
-        >
+        <div v-for="movie in searchedMovies" :key="movie.movieid" class="movie">
           <div class="movie-img">
             <img
               :src="`https:/image.tmdb.org/t/p/w500/${movie.poster_path}`"
@@ -119,7 +115,6 @@ export default {
       movies.results.forEach((movie) => {
         this.movies.push(movie)
       })
-      // console.log(this.movies)
     },
     async searchMovies() {
       const data = await fetch(
@@ -129,7 +124,6 @@ export default {
       searchedMovies.results.forEach((movie) => {
         this.searchedMovies.push(movie)
       })
-      console.log(this.searchedMovies)
     },
     clearSearch() {
       this.searchInput = ''
