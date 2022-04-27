@@ -10,7 +10,7 @@ In this project, I created a movie app that allows users to search for any movie
 
 ## Live Demo 🌐
 
-### [Movies App Link]()
+### [Movies App Link](https://bondok6.github.io/movie-app/)
 
 ## Getting Started
 
