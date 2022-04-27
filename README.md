@@ -1,6 +1,6 @@
 # Movies App
 
-In this project, I created a movie app that allows users to search for any movie they want and view information about it thanks to [the movie db](In this project, I created a movie app that allows users to search for any movie they want and view information about it using).
+In this project, I created a movie app that allows users to search for any movie they want and view information about it thanks to [the movie db](https://www.themoviedb.org/).
 
 ## Built With
 
